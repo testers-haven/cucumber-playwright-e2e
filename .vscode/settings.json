@@ -1,0 +1,4 @@
+{     
+    "cucumberautocomplete.steps": ["./playwright/src/step-definitions/**/*.ts"],
+    "cucumberautocomplete.syncfeatures": "./playwright/src/features/*.feature",
+}
