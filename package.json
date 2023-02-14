@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "cucumber": "cucumber-js src/features/**/*.feature --require-module ts-node/register --require src/stepDefinitions/**/**/*.ts"
+    "transpile": "rimraf dist && babel --extensions .ts --out-dir dist src",
+    "cucumber": "npm run transpile && cucumber-js"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +15,11 @@
     "playwright": "^1.30.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-typescript": "^7.18.6",
+    "dotenv": "^16.0.3"
   }
 }

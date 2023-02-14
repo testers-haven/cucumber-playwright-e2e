@@ -5,6 +5,10 @@ Given (
     async function(pageId:string) {
         console.log(`I am on the ${pageId} page`);
 
-        await global.page.goto("https://hub.testingtalks.com.au/");
+        const {
+            screen: { page}
+        } = this;
+
+        await page.goto("https://hub.testingtalks.com.au/");
     }
 )
