@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "transpile": "rimraf dist && babel --extensions .ts --out-dir dist src",
+    "transpile": "rimraf dist && babel --extensions .ts --out-dir dist src --copy-files",
     "cucumber": "npm run transpile && cucumber-js"
   },
   "author": "",
