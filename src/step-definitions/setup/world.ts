@@ -1,25 +1,23 @@
-import  playwright, { 
+import playwright, {
     BrowserContextOptions,
     Page,
-Browser,
-BrowserContext,
-BrowserType
-} from "playwright";
-
-import { World, IWorldOptions, setWorldConstructor } from "@cucumber/cucumber";
-import { env } from "../../env/parseEnv";
-import * as dotenv from 'dotenv'
-dotenv.config()
+    Browser,
+    BrowserContext,
+    BrowserType,
+} from 'playwright';
+import { World, IWorldOptions, setWorldConstructor } from '@cucumber/cucumber';
+import { env } from '../../env/parseEnv';
 
 export type Screen = {
     browser: Browser;
     context: BrowserContext;
     page: Page;
-}
+};
 
 export class ScenarioWorld extends World {
     constructor(options: IWorldOptions) {
-        super(options)
+        super(options);
+
     }
 
     screen!: Screen;
@@ -28,12 +26,12 @@ export class ScenarioWorld extends World {
         await this.screen?.page?.close();
         await this.screen?.context?.close();
         await this.screen?.browser?.close();
-        
+
         const browser = await this.newBrowser();
         const context = await browser.newContext(contextOptions);
         const page = await context.newPage();
 
-        this.screen = { browser, context, page};
+        this.screen = { browser, context, page };
 
         return this.screen;
     }
@@ -46,10 +44,10 @@ export class ScenarioWorld extends World {
         const browserType: BrowserType = playwright[automationBrowser];
         const browser = await browserType.launch({
             headless: process.env.HEADLESS !== 'false',
-            args: ['--disable-web-security', '--disable-features=IsolateOrigins, site-per-process']
-        })
+            args: ['--disable-web-security', '--disable-features=IsolateOrigins,site-per-process'],
+        });
         return browser;
-    }
+    };
 }
 
 setWorldConstructor(ScenarioWorld);
