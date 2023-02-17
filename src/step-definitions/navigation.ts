@@ -1,16 +1,19 @@
 import { Given } from '@cucumber/cucumber'
 import { ScenarioWorld } from './setup/world';
+import { PageId } from '../env/global';
+import { navigateToPage } from '../support/navigation-behaviour';
 
 Given(
     /^I am on the "([^"]*)" page$/,
-    async function(this: ScenarioWorld, pageId: string) {
+    async function(pageId: PageId) {
         const {
             screen: { page },
+            globalConfig
         } = this;
 
         console.log(`I am on the ${pageId} page`);
 
-        await page.goto("https://hub.testingtalks.com.au/")
+        await navigateToPage(page, pageId, globalConfig);
 
     }
 )

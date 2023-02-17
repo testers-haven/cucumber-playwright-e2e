@@ -7,6 +7,8 @@ import playwright, {
 } from 'playwright';
 import { World, IWorldOptions, setWorldConstructor } from '@cucumber/cucumber';
 import { env } from '../../env/parseEnv';
+import { GlobalConfig } from '../../env/global'; 
+
 
 export type Screen = {
     browser: Browser;
@@ -17,8 +19,11 @@ export type Screen = {
 export class ScenarioWorld extends World {
     constructor(options: IWorldOptions) {
         super(options);
-
+        
+        this.globalConfig = options.parameters as GlobalConfig;
     }
+
+    globalConfig: GlobalConfig;
 
     screen!: Screen;
 
