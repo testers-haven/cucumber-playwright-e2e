@@ -5,7 +5,7 @@ import { navigateToPage } from '../support/navigation-behaviour';
 
 Given(
     /^I am on the "([^"]*)" page$/,
-    async function(pageId: PageId) {
+    async function(this: ScenarioWorld, pageId: PageId) {
         const {
             screen: { page },
             globalVariables,

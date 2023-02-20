@@ -7,19 +7,15 @@ export const navigateToPage = async (
     {pagesConfig, hostsConfig}: GlobalConfig
     ): Promise<void> => {
         const {
-            UI_AUTOMATION_HOST: hostName = 'localhost'
+            UI_AUTOMATION_HOST: hostName = 'live'
         } = process.env
 
         const hostPath = hostsConfig[`${hostName}`];
-        console.log('hostpath ' + hostPath)
 
         const url = new URL(hostPath);
-        console.log('url ' + url)
-
+        
         const pagesConfigItem = pagesConfig[pageId];
         url.pathname = pagesConfigItem.route;
-
-        console.log('pathname ' + url.pathname)
 
         await page.goto(url.href);
     }
