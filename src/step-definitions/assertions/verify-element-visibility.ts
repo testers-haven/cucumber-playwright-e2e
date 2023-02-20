@@ -1,24 +1,27 @@
 import { Then } from '@cucumber/cucumber'
 import { expect } from '@playwright/test'
-import {ScenarioWorld} from "../setup/world";
+import { ElementKey} from "../../env/global";
+import { getElementLocator } from "../../support/web-element-helper";
 
 Then(
     /^the "([^"]*)" should be displayed$/,
-    async function (this: ScenarioWorld, elementKey: string) {
+    async function (elementKey: string) {
         const {
             screen: { page },
+            globalVariables,
+            globalConfig
         } = this;
-
         console.log(`the ${elementKey} should be displayed`);
 
-        const locator = page.locator("[data-id='header-logo']")
-        await expect(locator).toBeVisible();
+        const elementIdentifier = getElementLocator(page, elementKey, globalVariables, globalConfig)
+
+        await expect(elementIdentifier).toBeVisible();
     }
 );
 
 Then(
     /^the "([^"]*)" should contain the text "(.*)"$/,
-    async function(this: ScenarioWorld, elementKey: string, expectedElementText: string) {
+    async function(elementKey: string, expectedElementText: string) {
         const {
             screen: { page },
         } = this;
