@@ -24,13 +24,11 @@ const pageElementMappings: PageElementMappings = mappingFiles.reduce(
     {}
 )
 
-
 const worldParameters: GlobalConfig = {
     hostsConfig,
     pagesConfig,
     pageElementMappings,
 };
-
 
 const common = `./src/features/**/*.feature \
                 --require-module ts-node/register \

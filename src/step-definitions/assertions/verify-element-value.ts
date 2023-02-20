@@ -8,11 +8,10 @@ Then(
     async function(this: ScenarioWorld, elementKey: string, expectedElementText: string) {
         const {
             screen: { page },
-            globalVariables,
             globalConfig
         } = this;
 
-        const elementIdentifier = getElementLocator(page, elementKey, globalVariables, globalConfig);
+        const elementIdentifier = getElementLocator(page, elementKey, globalConfig);
         await  waitFor(async() => {
             const elementText = (await page.textContent(elementIdentifier));
             return elementText?.includes(expectedElementText);
